@@ -1,9 +1,9 @@
 let streams = [];
-let symbolSize = 25;
+let symbolSize = 30;
 let opacity = 0;
 
 function setup() {
-    frameRate(60);
+    frameRate(20);
     createCanvas(
         windowWidth,
         windowHeight
@@ -26,6 +26,12 @@ function draw() {
     streams.forEach(function (stream) {
         stream.render();
     });
+
+    // show framerate
+    /* fill(0)
+    rect(0, 0, 30, 30)
+    fill(255)
+    text(Math.floor(frameRate()), 0, 0, 50, 30) */
 }
 
 function Symbol(x, y, highlighted, opacity) {
