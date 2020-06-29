@@ -1,13 +1,12 @@
 let streams = [];
-let fadeInterval = 2;
-let symbolSize = 30;
+let symbolSize = 25;
 let opacity = 0;
 
 function setup() {
     frameRate(60);
     createCanvas(
-        window.innerWidth,
-        window.innerHeight
+        windowWidth,
+        windowHeight
     );
     background(0);
 
@@ -18,7 +17,6 @@ function setup() {
         streams.push(stream);
         x += symbolSize
     }
-
     textFont('Consolas');
 }
 
@@ -30,15 +28,13 @@ function draw() {
     });
 }
 
-function Symbol(x, y, speed, first, opacity) {
+function Symbol(x, y, highlighted, opacity) {
     this.x = x;
     this.y = y;
-    this.value;
-
-    this.speed = 0
-    this.first = first;
+    this.highlighted = highlighted;
     this.opacity = opacity;
 
+    this.value;
     this.switchInterval = round(random(10, 20));
 
     this.setToRandomSymbol = function () {
@@ -53,19 +49,11 @@ function Symbol(x, y, speed, first, opacity) {
             }
         }
     }
-
-    this.rain = function () {
-        this.y = (this.y >= height + symbolSize) ? 0 : this.y += this.speed;
-    }
-
 }
 
 function Stream() {
     this.symbols = [];
-    //this.totalSymbols = round(random(5, 34));
     this.totalSymbols = Math.floor(windowHeight / symbolSize);
-    //this.speed = random(2, 8);
-    this.speed = 0;
 
     this.generateSymbols = function (x, y) {
         let opacity = 255;
@@ -74,27 +62,23 @@ function Stream() {
             symbol = new Symbol(
                 x,
                 y,
-                this.speed,
                 highlighted,
                 opacity
             );
             symbol.setToRandomSymbol();
             this.symbols.push(symbol);
-            //opacity -= (255 / this.totalSymbols) / fadeInterval;
             y -= symbolSize;
-            //highlighted = false;
         }
     }
 
     this.render = function () {
         this.symbols.forEach(function (symbol) {
-            if (symbol.first) {
+            if (symbol.highlighted) {
                 fill(255, 225, 100, symbol.opacity);
             } else {
                 fill(255, 150, 0, symbol.opacity);
             }
             text(symbol.value, symbol.x, symbol.y);
-            //symbol.rain();
             symbol.setToRandomSymbol();
         });
     }
