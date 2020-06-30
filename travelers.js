@@ -1,5 +1,5 @@
 let streams = [];
-let symbolSize = 35;
+let symbolSize = 36;
 let opacity = 0;
 
 // TRAVELER VARIABLES
@@ -26,7 +26,7 @@ let yPosTell;
 let availableTells = [' 00.23 AM, 1255ft', ' 03.42 PM, 486ft', ' 09.31 AM, 846ft', ' 7.19 PM, 493ft', ' 05.22 AM, 615ft'];
 
 let tell = '';
-let tellAsArray = traveler.split('');
+let tellAsArray = tell.split('');
 let displayedTell = '';
 let currentTellCharToType = 0;
 
@@ -40,7 +40,7 @@ let yPosCoords;
 let availableCoords = [' 40.910189, -92.673172', ' 38.204280, -115.524777', ' 51.568841, -106.738161', ' 49.200621, -91.627068', ' 45.045031, -77.830214'];
 
 let coords = '';
-let coordsAsArray = traveler.split('');
+let coordsAsArray = coords.split('');
 let displayedCoords = '';
 let currentCoordsCharToType = 0;
 
@@ -61,7 +61,7 @@ function setup() {
     background(0);
 
     let x = 0;
-    for (let i = 0; i <= width / symbolSize; i++) {
+    for (let i = 0; i <= Math.floor(windowWidth / symbolSize); i++) {
         let stream = new Stream();
         stream.generateSymbols(x, symbolSize - 8);
         streams.push(stream);
@@ -72,7 +72,7 @@ function setup() {
 
 function draw() {
     textSize(symbolSize);
-    background(0, 150);
+    background(0, 100);
     streams.forEach(function (stream) {
         stream.render();
     });
