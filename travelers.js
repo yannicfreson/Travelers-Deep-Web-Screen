@@ -161,7 +161,7 @@ function Symbol(x, y, highlighted, opacity) {
         if (frameCount % this.switchInterval == 0) {
             if (charType > 1) {
                 this.value = String.fromCharCode(
-                    0x30A0 + floor(random(0, 97));
+                    0x30A0 + floor(random(0, 97))
                 );
             } else {
                 this.value = floor(random(0, 10));
