@@ -1,5 +1,5 @@
 let streams = [];
-let symbolSize = 30;
+let symbolSize = 35;
 let opacity = 0;
 
 // TRAVELER VARIABLES
@@ -63,7 +63,7 @@ function setup() {
     let x = 0;
     for (let i = 0; i <= width / symbolSize; i++) {
         let stream = new Stream();
-        stream.generateSymbols(x, -3);
+        stream.generateSymbols(x, symbolSize - 8);
         streams.push(stream);
         x += symbolSize;
     }
@@ -80,17 +80,17 @@ function draw() {
     // RENDER THE RANDOM BOX
     if (frameCount % 170 === 0) {
         frameBox = frameCount;
-        lengthBox = round(random(10, 20) * symbolSize);
+        lengthBox = round(random(15, 30) * symbolSize);
         xPosBox = -lengthBox;
         yPosBox = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
     }
-    if (frameCount < frameBox + 50) {
-        xPosBox += windowWidth / 30;
-        randomBox(xPosBox, yPosBox, lengthBox);
+    if (frameCount < frameBox + 100) {
+        xPosBox += windowWidth / 75;
+        randomBox(xPosBox, yPosBox - 1, lengthBox);
     }
 
     // RENDER THE TRAVELER
-    if (frameCount % 150 === 0) {
+    if (frameCount % 300 === 0) {
         frameTraveler = frameCount;
         gradTraveler = 0;
         traveler = availableTravelers[Math.floor(Math.random() * availableTravelers.length)];
@@ -101,13 +101,13 @@ function draw() {
         xPosTraveler = Math.floor(Math.random() * Math.floor((windowWidth - (10 * symbolSize)) / symbolSize)) * symbolSize;
         yPosTraveler = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
     }
-    if (frameCount < frameTraveler + 100) {
+    if (frameCount < frameTraveler + 150) {
         gradTraveler += 5;
         showTraveler(xPosTraveler, yPosTraveler);
     }
 
     // RENDER THE TELL
-    if (frameCount % 150 === 0) {
+    if (frameCount % 300 === 0) {
         frameTell = frameCount;
         gradTell = 0;
         tell = availableTells[Math.floor(Math.random() * availableTells.length)];
@@ -118,13 +118,13 @@ function draw() {
         xPosTell = Math.floor(Math.random() * Math.floor((windowWidth - (10 * symbolSize)) / symbolSize)) * symbolSize;
         yPosTell = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
     }
-    if (frameCount < frameTell + 100) {
+    if (frameCount < frameTell + 150) {
         gradTell += 5;
         showTell(xPosTell, yPosTell);
     }
 
     // RENDER THE COORDS
-    if (frameCount % 150 === 0) {
+    if (frameCount % 300 === 0) {
         frameCoords = frameCount;
         gradCoords = 0;
         coords = availableCoords[Math.floor(Math.random() * availableCoords.length)];
@@ -135,16 +135,10 @@ function draw() {
         xPosCoords = Math.floor(Math.random() * Math.floor((windowWidth - (13 * symbolSize)) / symbolSize)) * symbolSize;
         yPosCoords = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
     }
-    if (frameCount < frameCoords + 100) {
+    if (frameCount < frameCoords + 150) {
         gradCoords += 5;
         showCoords(xPosCoords, yPosCoords);
     }
-
-    // show framerate
-    /* fill(0)
-    rect(0, 0, 30, 30)
-    fill(255)
-    text(Math.floor(frameRate()), 0, 0, 50, 30) */
 }
 
 function Symbol(x, y, highlighted, opacity) {
