@@ -1,5 +1,5 @@
 let streams = [];
-let symbolSize = 40;
+let symbolSize = 30;
 let opacity = 0;
 
 // TRAVELER VARIABLES
