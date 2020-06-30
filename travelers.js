@@ -1,9 +1,62 @@
 let streams = [];
-let symbolSize = 30;
+let symbolSize = 40;
 let opacity = 0;
 
+// TRAVELER VARIABLES
+let frameTraveler;
+let gradTraveler = 0;
+
+let xPosTraveler;
+let yPosTraveler;
+
+let availableTravelers = [' Traveler 3326', ' Traveler 3465', ' Traveler 3468', ' Traveler 3569', ' Traveler 0115']
+
+let traveler = '';
+let travelerAsArray = traveler.split('');
+let displayedTraveler = '';
+let currentTravelerCharToType = 0;
+
+// TELL VARIABLES
+let frameTell;
+let gradTell = 0;
+
+let xPosTell;
+let yPosTell;
+
+let availableTells = [' 00.23 AM, 1255ft', ' 00.23 AM, 1255ft', ' 00.23 AM, 1255ft', ' 00.23 AM, 1255ft', ' 00.23 AM, 1255ft']
+
+let tell = '';
+let tellAsArray = traveler.split('');
+let displayedTell = '';
+let currentTellCharToType = 0;
+
+// COORDINATES VARIABLES
+let frameCoords;
+let gradCoords = 0;
+
+let xPosCoords;
+let yPosCoords;
+
+let availableCoords = [' 40.910189, -92.673172', ' 38.204280, -115.524777', ' 51.568841, -106.738161', ' 49.200621, -91.627068', ' 45.045031, -77.830214']
+
+let coords = '';
+let coordsAsArray = traveler.split('');
+let displayedCoords = '';
+let currentCoordsCharToType = 0;
+
+// RANDOM BOX VARIABLES
+let xPosBox;
+let yPosBox;
+let frameBox;
+let lengthBox;
+
+
+let finishedTraveler = false;
+let finishedTell = false;
+let finishedCoords = false;
+
 function setup() {
-    frameRate(20);
+    frameRate(30);
     createCanvas(
         windowWidth,
         windowHeight
@@ -13,7 +66,7 @@ function setup() {
     let x = 0;
     for (let i = 0; i <= width / symbolSize; i++) {
         let stream = new Stream();
-        stream.generateSymbols(x, windowHeight);
+        stream.generateSymbols(x, -3);
         streams.push(stream);
         x += symbolSize
     }
@@ -26,6 +79,69 @@ function draw() {
     streams.forEach(function (stream) {
         stream.render();
     });
+
+    // RENDER THE RANDOM BOX
+    if (frameCount % 170 === 0) {
+        frameBox = frameCount;
+        lengthBox = round(random(10, 20) * symbolSize)
+        xPosBox = -lengthBox;
+        yPosBox = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
+    }
+    if (frameCount < frameBox + 50) {
+        xPosBox += windowWidth / 30
+        randomBox(xPosBox, yPosBox, lengthBox);
+    }
+
+    // RENDER THE TRAVELER
+    if (frameCount % 150 === 0) {
+        frameTraveler = frameCount;
+        gradTraveler = 0;
+        traveler = availableTravelers[Math.floor(Math.random() * availableTravelers.length)];
+        travelerAsArray = traveler.split('');
+        displayedTraveler = ''
+        currentTravelerCharToType = 0
+        finishedTraveler = false
+        xPosTraveler = Math.floor(Math.random() * Math.floor((windowWidth - (10 * symbolSize)) / symbolSize)) * symbolSize;
+        yPosTraveler = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
+    }
+    if (frameCount < frameTraveler + 100) {
+        gradTraveler += 5;
+        showTraveler(xPosTraveler, yPosTraveler);
+    }
+
+    // RENDER THE TELL
+    if (frameCount % 150 === 0) {
+        frameTell = frameCount;
+        gradTell = 0;
+        tell = availableTells[Math.floor(Math.random() * availableTells.length)];
+        tellAsArray = tell.split('');
+        displayedTell = ''
+        currentTellCharToType = 0
+        finishedTell = false
+        xPosTell = Math.floor(Math.random() * Math.floor((windowWidth - (10 * symbolSize)) / symbolSize)) * symbolSize;
+        yPosTell = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
+    }
+    if (frameCount < frameTell + 100) {
+        gradTell += 5;
+        showTell(xPosTell, yPosTell);
+    }
+
+    // RENDER THE COORDS
+    if (frameCount % 150 === 0) {
+        frameCoords = frameCount;
+        gradCoords = 0;
+        coords = availableCoords[Math.floor(Math.random() * availableCoords.length)];
+        coordsAsArray = coords.split('');
+        displayedCoords = ''
+        currentCoordsCharToType = 0
+        finishedCoords = false
+        xPosCoords = Math.floor(Math.random() * Math.floor((windowWidth - (13 * symbolSize)) / symbolSize)) * symbolSize;
+        yPosCoords = Math.floor(Math.random() * Math.floor(windowHeight / symbolSize)) * symbolSize;
+    }
+    if (frameCount < frameCoords + 100) {
+        gradCoords += 5;
+        showCoords(xPosCoords, yPosCoords);
+    }
 
     // show framerate
     /* fill(0)
@@ -73,7 +189,7 @@ function Stream() {
             );
             symbol.setToRandomSymbol();
             this.symbols.push(symbol);
-            y -= symbolSize;
+            y += symbolSize;
         }
     }
 
@@ -88,4 +204,87 @@ function Stream() {
             symbol.setToRandomSymbol();
         });
     }
+}
+
+function typeTraveler() {
+    nextChar();
+    function nextChar() {
+        this.currentCharToType = currentTravelerCharToType;
+        if (currentTravelerCharToType < travelerAsArray.length) {
+            displayedTraveler += travelerAsArray[currentTravelerCharToType];
+            currentTravelerCharToType++;
+        } else if (currentTravelerCharToType >= travelerAsArray.length) {
+            finishedTraveler = true
+        }
+    }
+    if (finishedTraveler == false) {
+        //setTimeout(typeTraveler, round(random(200, 300)));
+    }
+}
+
+function typeTell() {
+    nextChar();
+    function nextChar() {
+        this.currentCharToType = currentTellCharToType;
+        if (currentTellCharToType < tellAsArray.length) {
+            displayedTell += tellAsArray[currentTellCharToType];
+            currentTellCharToType++;
+        } else if (currentTellCharToType >= tellAsArray.length) {
+            finishedTell = true
+        }
+    }
+    if (finishedTell == false) {
+        //setTimeout(typeTell, round(random(200, 300)));
+    }
+}
+
+function typeCoords() {
+    nextChar();
+    function nextChar() {
+        this.currentCharToType = currentCoordsCharToType;
+        if (currentCoordsCharToType < coordsAsArray.length) {
+            displayedCoords += coordsAsArray[currentCoordsCharToType];
+            currentCoordsCharToType++;
+        } else if (currentCoordsCharToType >= coordsAsArray.length) {
+            finishedCoords = true
+        }
+    }
+    if (finishedCoords == false) {
+        //setTimeout(typeTell, round(random(200, 300)));
+    }
+}
+
+function showTraveler(xPos, yPos) {
+    fill(0, gradTraveler);
+    if (gradTraveler > 100) {
+        typeTraveler()
+    }
+    rect(xPos, yPos, symbolSize * (displayedTraveler.length - 6), symbolSize);
+    fill(255)
+    text(displayedTraveler, xPos, yPos + 3, xPos + symbolSize * displayedTraveler.length, yPos + symbolSize)
+}
+
+function showTell(xPos, yPos) {
+    fill(0, gradTell);
+    if (gradTell > 100) {
+        typeTell()
+    }
+    rect(xPos, yPos, symbolSize * (displayedTell.length - 7), symbolSize);
+    fill(255)
+    text(displayedTell, xPos, yPos + 3, xPos + symbolSize * displayedTell.length, yPos + symbolSize)
+}
+
+function showCoords(xPos, yPos) {
+    fill(0, gradCoords);
+    if (gradCoords > 100) {
+        typeCoords()
+    }
+    rect(xPos, yPos, symbolSize * (displayedCoords.length - 9), symbolSize);
+    fill(255)
+    text(displayedCoords, xPos, yPos + 3, xPos + symbolSize * displayedCoords.length, yPos + symbolSize)
+}
+
+function randomBox(xPos, yPos, length) {
+    fill(0)
+    rect(xPos, yPos, length, symbolSize);
 }
