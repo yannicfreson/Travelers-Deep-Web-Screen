@@ -9,7 +9,7 @@ let gradTraveler = 0;
 let xPosTraveler;
 let yPosTraveler;
 
-let availableTravelers = [' Traveler 3326', ' Traveler 3465', ' Traveler 3468', ' Traveler 3569', ' Traveler 0115'];
+let availableTravelers = [' ҬГдψӠleг 3326', ' ҬГѦЏӠl3г 3465', ' ҬГдψӠl3г 3468', ' ҬГдЏӠl3г 3569', ' ҬГдЏӠl3г 0115'];
 
 let traveler = '';
 let travelerAsArray = traveler.split('');
@@ -23,7 +23,7 @@ let gradTell = 0;
 let xPosTell;
 let yPosTell;
 
-let availableTells = [' 00.23 AM, 1255ft', ' 03.42 PM, 486ft', ' 09.31 AM, 846ft', ' 7.19 PM, 493ft', ' 05.22 AM, 615ft'];
+let availableTells = [' 00.23 ДӍ, 1255Ғҭ', ' 03.42 ҎӍ, 486Ғҭ', ' 09.31 ДӍ, 846Ғҭ', ' 7.19 ҎӍ, 493Ғҭ', ' 05.22 ДӍ, 615Ғҭ'];
 
 let tell = '';
 let tellAsArray = tell.split('');
