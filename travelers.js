@@ -257,7 +257,7 @@ function showTraveler(xPos, yPos) {
         typeTraveler();
     }
     rect(xPos, yPos, symbolSize * (displayedTraveler.length - 6), symbolSize);
-    fill(255);
+    fill(255, 255, 220);
     text(displayedTraveler, xPos, yPos + 3, xPos + symbolSize * displayedTraveler.length, yPos + symbolSize);
 }
 
@@ -267,7 +267,7 @@ function showTell(xPos, yPos) {
         typeTell();
     }
     rect(xPos, yPos, symbolSize * (displayedTell.length - 7), symbolSize);
-    fill(255);
+    fill(255, 255, 220);
     text(displayedTell, xPos, yPos + 3, xPos + symbolSize * displayedTell.length, yPos + symbolSize);
 }
 
@@ -277,7 +277,7 @@ function showCoords(xPos, yPos) {
         typeCoords();
     }
     rect(xPos, yPos, symbolSize * (displayedCoords.length - 9), symbolSize);
-    fill(255);
+    fill(255, 255, 220);
     text(displayedCoords, xPos, yPos + 3, xPos + symbolSize * displayedCoords.length, yPos + symbolSize);
 }
 
