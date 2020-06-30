@@ -276,6 +276,6 @@ function showCoords(xPos, yPos) {
 }
 
 function randomBox(xPos, yPos, length) {
-    fill(0);
+    fill(0, 150);
     rect(xPos, yPos, length, symbolSize);
 }
