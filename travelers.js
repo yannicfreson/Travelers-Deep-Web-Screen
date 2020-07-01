@@ -103,7 +103,7 @@ function draw() {
     }
     if (frameCount < frameTraveler + 150) {
         gradTraveler += 5;
-        showTraveler(xPosTraveler, yPosTraveler);
+        showTraveler(xPosTraveler, yPosTraveler - 4);
     }
 
     // RENDER THE TELL
@@ -120,7 +120,7 @@ function draw() {
     }
     if (frameCount < frameTell + 150) {
         gradTell += 5;
-        showTell(xPosTell, yPosTell);
+        showTell(xPosTell, yPosTell - 4);
     }
 
     // RENDER THE COORDS
@@ -137,7 +137,7 @@ function draw() {
     }
     if (frameCount < frameCoords + 150) {
         gradCoords += 5;
-        showCoords(xPosCoords, yPosCoords);
+        showCoords(xPosCoords, yPosCoords - 4);
     }
 }
 
@@ -260,7 +260,7 @@ function showTell(xPos, yPos) {
     if (gradTell > 100) {
         typeTell();
     }
-    rect(xPos, yPos, symbolSize * (displayedTell.length - 7), symbolSize);
+    rect(xPos, yPos, symbolSize * (displayedTell.length - 6), symbolSize);
     fill(255, 255, 220);
     text(displayedTell, xPos, yPos + 3, xPos + symbolSize * displayedTell.length, yPos + symbolSize);
 }
