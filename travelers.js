@@ -1,3 +1,5 @@
+// WELCOME TO THE 21ST
+
 let streams = [];
 let symbolSize = 36;
 let opacity = 0;
