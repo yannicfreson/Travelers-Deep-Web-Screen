@@ -173,7 +173,7 @@ function Stream() {
     this.generateSymbols = function (x, y) {
         let opacity = 255;
         for (let i = 0; i <= this.totalSymbols; i++) {
-            let highlighted = round(random(0, 4)) == 1;
+            let highlighted = round(random(0, 5)) == 1;
             symbol = new Symbol(
                 x,
                 y,
