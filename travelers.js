@@ -1,7 +1,7 @@
 // WELCOME TO THE 21ST
 
 let streams = [];
-let symbolSize = 36;
+let symbolSize = 25;
 let opacity = 0;
 
 // TRAVELER VARIABLES
@@ -62,10 +62,10 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
 
-    let x = 0;
+    let x = 1;
     for (let i = 0; i <= Math.floor(windowWidth / symbolSize); i++) {
         let stream = new Stream();
-        stream.generateSymbols(x, symbolSize - 8);
+        stream.generateSymbols(x, symbolSize - 7);
         streams.push(stream);
         x += symbolSize;
     }
