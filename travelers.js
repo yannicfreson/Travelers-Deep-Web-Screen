@@ -1,4 +1,4 @@
-// WELCOME TO THE 21ST
+// WELCOME TO THE 21ST.
 
 let streams = [];
 let symbolSize = 25;
