@@ -65,7 +65,7 @@ function setup() {
     let x = 1;
     for (let i = 0; i <= Math.floor(windowWidth / symbolSize); i++) {
         let stream = new Stream();
-        stream.generateSymbols(x, symbolSize - 7);
+        stream.generateSymbols(x, symbolSize - 3);
         streams.push(stream);
         x += symbolSize;
     }
