@@ -252,9 +252,9 @@ function showTraveler(xPos, yPos) {
     if (gradTraveler > 100) {
         typeTraveler();
     }
-    rect(xPos, yPos, symbolSize * (displayedTraveler.length - 6), symbolSize);
+    rect(xPos, yPos + 2, symbolSize * (displayedTraveler.length - 6), symbolSize);
     fill(255, 255, 220);
-    text(displayedTraveler, xPos, yPos + 5, xPos + symbolSize * displayedTraveler.length, yPos + symbolSize);
+    text(displayedTraveler, xPos, yPos + 6, xPos + symbolSize * displayedTraveler.length, yPos + symbolSize);
 }
 
 function showTell(xPos, yPos) {
@@ -262,9 +262,9 @@ function showTell(xPos, yPos) {
     if (gradTell > 100) {
         typeTell();
     }
-    rect(xPos, yPos, symbolSize * (displayedTell.length - 6), symbolSize);
+    rect(xPos, yPos + 2, symbolSize * (displayedTell.length - 6), symbolSize);
     fill(255, 255, 220);
-    text(displayedTell, xPos, yPos + 5, xPos + symbolSize * displayedTell.length, yPos + symbolSize);
+    text(displayedTell, xPos, yPos + 6, xPos + symbolSize * displayedTell.length, yPos + symbolSize);
 }
 
 function showCoords(xPos, yPos) {
@@ -272,9 +272,9 @@ function showCoords(xPos, yPos) {
     if (gradCoords > 100) {
         typeCoords();
     }
-    rect(xPos, yPos, symbolSize * (displayedCoords.length - 9), symbolSize);
+    rect(xPos, yPos + 2, symbolSize * (displayedCoords.length - 9), symbolSize);
     fill(255, 255, 220);
-    text(displayedCoords, xPos, yPos + 5, xPos + symbolSize * displayedCoords.length, yPos + symbolSize);
+    text(displayedCoords, xPos, yPos + 6, xPos + symbolSize * displayedCoords.length, yPos + symbolSize);
 }
 
 function randomBox(xPos, yPos, length) {
